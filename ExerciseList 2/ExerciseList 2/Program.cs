@@ -11,7 +11,7 @@ namespace ExerciseList_2
         static void Main(string[] args)
         {
             List<int> enteros = new List<int>();
-            List<decimal> decimales = new List<decimal>();
+            List<double> decimales = new List<double>();
 
             string num;
             do
@@ -19,29 +19,43 @@ namespace ExerciseList_2
                 Console.WriteLine("introduce un número");
                 num = Console.ReadLine();
 
-                if (num.Contains(".") || num.Contains(","))
+                if (!num.Contains("-"))
                 {
-                    decimal numDecimal = Convert.ToDecimal(num);
-                    decimales.Add(numDecimal);
-                    Console.WriteLine("Es decimal");
-                }
-                else
-                {
-                    int numEntero = Convert.ToInt32(num);
-                    enteros.Add(numEntero);
-                    Console.WriteLine("Es entero");
+                    if (num.Contains(".") || num.Contains(","))
+                    {
+                        double numDecimal = Convert.ToDouble(num);
+                        decimales.Add(numDecimal);
+                        Console.WriteLine("Es decimal");
+                    }
+                    else
+                    {
+                        int numEntero = Convert.ToInt32(num);
+                        enteros.Add(numEntero);
+                        Console.WriteLine("Es entero");
+                    }
                 }
             }
-            while (num != "120");
-            enteros.Remove(120);
+            while (!num.Contains("-"));
+            
+            Console.ReadLine();
+
             foreach (int x in enteros)
             {
                 Console.WriteLine(x);
+                
             }
-            foreach (decimal x in decimales)
+            Console.WriteLine(enteros.Sum());
+            Console.WriteLine(enteros.Count-1);
+
+            foreach (double x in decimales)
             {
                 Console.WriteLine(x);
+                
             }
+            Console.WriteLine(decimales.Sum());
+
+            double sumaTotal = decimales.Sum() + enteros.Sum();
+
 
             Console.ReadLine();
         }
